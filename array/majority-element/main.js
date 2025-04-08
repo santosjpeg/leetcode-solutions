@@ -3,18 +3,18 @@
  * @return {number}
  */
 var majorityElement = function (nums) {
-  if (nums.length === 1) return nums[0];
-
-  let hash = {};
-
-  let num;
-  for (num in nums) {
-    hash[num] = hash[num] ? hash[num + 1] : 1;
+  let major = nums[0];
+  let count = 1;
+  for (let i = 1; i < nums.length; i++) {
+    if (count === 0) {
+      count++;
+      major = nums[i];
+    }
+    else if (major === nums[i])
+      count++;
+    else count--;
   }
 
-  for (i in hash) {
-    if (hash[i] > nums.length / 2)
-      return i;
-  }
+  return major;
 
 };
